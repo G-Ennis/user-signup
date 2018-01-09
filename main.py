@@ -1,14 +1,14 @@
-from flask import Flask, render_template, request, redirect, url_for
+from flask import Flask, render_template, request, redirect
 
 app = Flask(__name__)
 app.config['DEBUG'] = True
     
 
-@app.route("/signup", methods=['GET'])
+@app.route('/signup', methods=['GET'])
 def index():
     return render_template('index.html')
 
-@app.route("/signup", methods=['GET', 'POST'])
+@app.route('/signup', methods=['GET', 'POST'])
 def validate_form():
 
     username = request.form['username'] 
@@ -50,15 +50,9 @@ def validate_form():
                         
 
     if not username_error and not password_error and not verify_error and not email_error:
-        return redirect (url_for("welcome"))
+        return render_template('welcome.html', username = username)
     else:
-        return render_template("index.html", username = username, username_error = username_error, password_error = password_error, verify_error = verify_error, email = email, email_error = email_error)
-
-
-@app.route('/welcome')
-def welcome():
-    Username = request.args.get('username')
-    return render_template("welcome.html")
+        return render_template('index.html', username = username, username_error = username_error, password_error = password_error, verify_error = verify_error, email = email, email_error = email_error)
 
 app.run()
 
