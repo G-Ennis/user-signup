@@ -10,22 +10,21 @@ def index():
 
 @app.route('/signup', methods=['GET', 'POST'])
 def validate_form():
-
+  
     username = request.form['username'] 
-    username_error = '' 
-    password = request.form['password'] 
-    password_error = ''
-    verify = request.form['verify']
-    verify_error = ''
-    email = request.form['email']
-    email_error = ''  
+    username_error = ''
 
     if len(username) < 3 or len(username) > 20:
         username_error = "Username must be between 3 and 20 characters"
      
     if ' ' in username:
-        username_error = "Not a valid username"        
+        username_error = "Not a valid username"   
 
+    password = request.form['password'] 
+    password_error = ''
+    verify = request.form['verify']
+    verify_error = ''
+    
     if len(password) < 3 or len(password) > 20:
         password_error = "Password must be between 3 and 20 characters"
         password = ''
@@ -38,7 +37,9 @@ def validate_form():
         verify_error = "Passwords do not match"
         verify = ''
 
-    
+    email = request.form['email']
+    email_error = '' 
+
     if len(email) < 3 or len(email) > 20:
         email_error = "Email must be between 3 and 20 characters"
     if '.' not in email:
@@ -46,7 +47,7 @@ def validate_form():
     if '@' not in email:
         email_error = "Not a valid email"
     if ' ' in email:
-        email_error = "Not a valid email"
+        email_error = "Email cannot contain spaces"
                         
 
     if not username_error and not password_error and not verify_error and not email_error:
