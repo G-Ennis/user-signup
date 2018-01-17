@@ -14,7 +14,7 @@
         
         <p>
             <label for="password">Password</label>
-                <input id="password" type="password" name="password"  value="{{ password }}"/>
+                <input id="password" type="password" name="password"/>
                     {% if password_error %}
                         <p class="error">{{ password_error }}</p>
                     {% endif %}
@@ -22,7 +22,7 @@
 
         <p>
             <label for="verify">Verify Password</label>
-                <input id="verify" type="password" name="verify"  value="{{ verify }}"/>
+                <input id="verify" type="password" name="verify"/>
                     {% if verify_error %}
                         <p class="error">{{ verify_error }}</p>
                     {% endif %}           
