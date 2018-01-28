@@ -8,6 +8,7 @@ app.config['DEBUG'] = True
 def index():
     return render_template('index.html')
 
+
 @app.route('/signup', methods=['GET', 'POST'])
 def validate_form():
   
@@ -40,14 +41,9 @@ def validate_form():
     email = request.form['email']
     email_error = '' 
 
-    if len(email) < 3 or len(email) > 20:
-        email_error = "Email must be between 3 and 20 characters"
-    if '.' not in email:
-        email_error = "Not a valid email"
-    if '@' not in email:
-        email_error = "Not a valid email"
-    if ' ' in email:
-        email_error = "Email cannot contain spaces"
+    if email != "":
+        if "@" not in email or "." not in email:
+            email_error = "Not a valid email."
                         
 
     if not username_error and not password_error and not verify_error and not email_error:
